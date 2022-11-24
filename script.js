@@ -15,11 +15,18 @@ const gameBoard = (() => {
   }
 
   const placeMarker = (block, currentIndex) => {
+    if (!document.querySelector(".player1>span").textContent || 
+        !document.querySelector(".player2>span").textContent) {
+          winnerDisplay.textContent = "Please enter the players' names!"
+          return;
+        }
+    if (winCond() == "WIN") return;
+
+    winnerDisplay.textContent = "";
+
     let turnsLeft = board.filter((el) => el == null).length;
 
     if (block.textContent) return;
-
-    if (winnerDisplay.textContent) return;
 
     if (turnsLeft % 2 == 0) {
       board.splice(currentIndex, 1, 0);
@@ -70,7 +77,7 @@ const gameBoard = (() => {
   const announceWinner = (turnsLeft, result) => {
     const p1Name = player1.getName();
     const p2Name = player2.getName();
-     
+
     if (result == "WIN" &&
       turnsLeft % 2 == 0) {
       winnerDisplay.textContent = `${p2Name} has won this round!`; //**//
