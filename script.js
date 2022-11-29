@@ -20,7 +20,7 @@ const gameBoard = (() => {
           winnerDisplay.textContent = "Please enter the players' names!"
           return;
         }
-    if (winCond() == "WIN") return;
+    if (winCond() == "WIN" || winCond() == "TIE") return;
 
     winnerDisplay.textContent = "";
 
@@ -81,18 +81,54 @@ const gameBoard = (() => {
     if (result == "WIN" &&
       turnsLeft % 2 == 0) {
       winnerDisplay.textContent = `${p2Name} has won this round!`; //**//
+      scoring(2); 
     }
-    else winnerDisplay.textContent = `${p1Name} has won this round!`;
+    else if (result == "WIN" && turnsLeft % 2 !== 0) {
+      winnerDisplay.textContent = `${p1Name} has won this round!`;
+      scoring(1); 
+    }
 
     if (result == "TIE") winnerDisplay.textContent = "It's a tie!";
   }
+
+  let _p1Score = 0;
+  let _p2Score = 0;
+
+  const scoring = (win) => {
+    const score = document.querySelector(`.player${win}-score`);
+    if (win == 1) {
+      _p1Score++;
+      return score.textContent = _p1Score;
+    } 
+    if (win == 2) {
+      _p2Score++; 
+      return score.textContent = _p2Score; 
+    }    
+  };
 
   const clearBoard = () => {
     board = [null, null, null, null, null, null, null, null, null];
     document.querySelectorAll(".block").forEach((el) => (el.textContent = ""));
     winnerDisplay.textContent = "";
   };
-  return { board, winCond, announceWinner, clearBoard };
+
+  const resetScore = () => {
+    clearBoard();
+    _p1Score = 0; 
+    _p2Score = 0;
+    document.querySelector(".player1-score").textContent = 0; 
+    document.querySelector(".player2-score").textContent = 0; 
+};
+
+
+  document.querySelector("html").addEventListener("keydown", (e) => {
+    if (winCond() == undefined || winCond() =="UNDECIDED") return;
+    if (e.code === "Enter") return clearBoard(); 
+    if (e.code === "KeyR" ) return resetScore();
+  });
+
+  return { board, winCond, announceWinner, clearBoard, resetScore};
+
 })();
 
 
@@ -128,8 +164,6 @@ const displayController = (() => {
 
   const resetBtn = document.querySelector(".reset");
   resetBtn.addEventListener("click", gameBoard.clearBoard);
-
-  //    const resetScore;
 })();
 
 const player1 = Player(1);
