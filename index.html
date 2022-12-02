@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,12 +9,13 @@
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js" defer></script>
 </head>
+
 <body>
     <div class="UI">
         <div class="controller">
-            <p class = "scoreboard"> 
-                <span class="player1-score">0</span> - 
-                <span class = "player2-score">0</span>
+            <p class="scoreboard">
+                <span class="player1-score">0</span> -
+                <span class="player2-score">0</span>
             </p>
             <button class="reset">RESET</button>
             <div class="instruction">&#9072;
@@ -22,16 +24,18 @@
                     Shortcut 'R' to reset Score.</span>
             </div>
         </div>
+        <div class="winner-display"></div>
         <div class="board"></div>
     </div>
 
-    <div class="playerDisplay">
+     <div class="player-display">
         <div class="player1">PLAYER 1<br>
             <span><input type="text" name="player1" id="player1" required></span>
         </div>
         <div class="player2"> PLAYER 2<br>
-            <span><input type="text" name="player2" id="player2" required></span>    
+            <span><input type="text" name="player2" id="player2" required></span>
         </div>
     </div>
 </body>
+
 </html>

@@ -2,23 +2,23 @@
     color: white;
     background-color: black;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    padding: 0; 
-    margin: 0; 
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
     /* outline: 1px solid red; */
 }
 
 .UI {
-    width: 80vw; 
-    min-width: 80vw; 
+    width: 80vw;
+    min-width: 80vw;
     height: 80vh;
-    margin: auto; 
+    margin: auto;
     margin-top: 10vh;
-    border: 5px solid black; 
+    border: 5px solid black;
     display: flex;
     flex-direction: column;
-    justify-content:center;
-    align-items:center;
+    justify-content: center;
+    align-items: center;
 }
 
 .controller {
@@ -26,29 +26,30 @@
     position: relative;
 }
 
-.controller > .scoreboard {
+.controller>.scoreboard {
     font-size: 4rem;
     margin-bottom: 1rem;
 }
 
-.controller > button {
+.controller>button {
+    font-size: 1rem;
     font-weight: bold;
     padding: 1em 9em;
     border: 1px solid white;
-    margin: 1em 0 4em;
-    box-shadow: 0 0 0 0.25em; 
+    margin: 1em 0 8em;
+    box-shadow: 0 0 0 0.25em;
 }
 
-.controller > button:active { 
+.controller>button:active {
     box-shadow: none;
-    transform: scale(0.9); 
+    transform: scale(0.9);
 }
 
-.instruction { 
-    font-size: 3rem;
-    position: absolute; 
-    top: 2em;
-    left: 6.2em;
+.instruction {
+    font-size: 3.5rem;
+    position: absolute;
+    top: 1.8em;
+    left:6.2em;
 }
 
 .instruction>span {
@@ -64,90 +65,131 @@
     display: none;
 }
 
+.winner-display { 
+    font-size: 2rem;
+    /* border: 1px solid purple;  */
+    position: absolute;
+    top: 10em;
+    z-index: 1;
+}
+
 .board {
     padding: 1em;
-    display: grid; 
+    margin-top: 2em;
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
-    align-items:center;
+    align-items: center;
 }
 
-.playerDisplay { 
-    display: flex; 
+.player-display {
+    display: flex;
     justify-content: space-between;
+    gap: 22em;
 }
 
-.player1, 
+.player1,
 .player2 {
     font-size: 1.5rem;
-    margin: 0 2rem;
-    position: relative; 
+    line-height: 2;
+    margin: 0 4rem;
+    position: relative;
     top: -28rem;
 }
 
-input#player1, 
+.player2 {
+    text-align: end;
+}
+
+.player2>span {
+    direction: rtl;
+}
+
+.player1>span,
+.player2>span {
+    font-size: 3rem;
+    margin-top: 1em;
+}
+
+.player1::after {
+    content: "X"; 
+    font-size: 1rem;
+    padding: 0 0.6em;
+    border: 1px solid white;
+    position: absolute; 
+    top: 0.5em;
+    left: 10em;
+}
+
+.player2::after {
+    content: "O";
+    font-size: 1rem;
+    padding: 0 0.5em;
+    border: 1px solid white;
+    position: absolute; 
+    top: 0.5em;
+    /* When you use 'direction: rtl;', some of the other properties have to be readjusted 
+    in the opposite direction as well.  */
+    right: 10em;
+}
+
+input#player1,
 input#player2 {
     background-color: #64748b;
-    font-size: 1em;
+    font-size: 1.5rem;
     width: 15ch;
     padding-left: 0.5em;
     border: none;
     border-radius: 0.25em;
-    margin-top: 1em;
 }
 
-input#player1:hover, 
+input#player1:hover,
 input#player2:hover {
     background-color: #94a3b8;
 }
 
-input#player1:invalid, 
-input#player2:invalid {
-    border: 1px solid red;
-}
-
-.block { 
+.block {
     font-size: 8rem;
-    width: 8rem; 
+    width: 8rem;
     height: 8rem;
     border: 0.125rem solid green;
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.block[data-index="0"] { 
+.block[data-index="0"] {
     border-top: none;
-    border-left: none; 
+    border-left: none;
 }
 
-.block[data-index="1"] { 
+.block[data-index="1"] {
     border-top: none;
 }
 
-.block[data-index="2"] { 
+.block[data-index="2"] {
     border-top: none;
-    border-right: none; 
+    border-right: none;
 }
 
-.block[data-index="3"] { 
-    border-left: none; 
+.block[data-index="3"] {
+    border-left: none;
 }
 
-.block[data-index="5"] { 
-    border-right: none; 
+.block[data-index="5"] {
+    border-right: none;
 }
 
-.block[data-index="6"] { 
+.block[data-index="6"] {
     border-bottom: none;
-    border-left: none; 
+    border-left: none;
 }
 
-.block[data-index="7"] { 
+.block[data-index="7"] {
     border-bottom: none;
 }
 
-.block[data-index="8"] { 
+.block[data-index="8"] {
     border-bottom: none;
-    border-right: none; 
+    border-right: none;
 }
